@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE RAW BLUEPRINT - Programme Musculation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- 1. NOUVELLE PALETTE DE COULEURS (Light Mode) --- */
+        :root {
+            --bg-main: #ffffff;
+            --bg-secondary: #f4f4f4; /* Gris très clair pour les sections */
+            --card-bg: #ffffff;
+            --accent: #800020; /* Rouge Bordeaux Profond */
+            --accent-glow: rgba(128, 0, 32, 0.2);
+            --text-main: #111111; /* Noir quasi pur */
+            --text-muted: #555555; /* Gris foncé */
+            --border-light: #e0e0e0; /* Bordures grises fines */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            /* Fond blanc avec nuance subtile */
+            background-image: radial-gradient(circle at 50% 0%, #ffffff 0%, #f0f0f0 100%);
+        }
+
+        /* --- 2. UI KIT --- */
+        h1, h2, h3 { font-weight: 900; letter-spacing: -0.5px; text-transform: uppercase; color: var(--text-main); }
+        
+        .text-gradient {
+            /* Dégradé Noir vers Bordeaux */
+            background: linear-gradient(90deg, #000, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-accent { color: var(--accent); }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: #ffffff; /* Texte blanc sur fond bordeaux */
+            padding: 18px 40px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            border: 1px solid var(--accent);
+            box-shadow: 0 4px 15px rgba(128, 0, 32, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background-color: #5c0016; /* Bordeaux plus sombre au survol */
+            box-shadow: 0 6px 20px rgba(128, 0, 32, 0.4);
+            border-color: #5c0016;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- 3. HEADER / NAV --- */
+        nav {
+            padding: 30px 0;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+        nav .flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 1px; color: #000; }
+
+        /* --- 4. HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            line-height: 1;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 90%;
+            font-weight: 500;
+        }
+
+        /* Effet de fond derrière le livre (Cercle Bordeaux léger) */
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            background: var(--accent);
+            filter: blur(80px);
+            opacity: 0.15; /* Très léger sur fond blanc */
+            border-radius: 50%;
+            z-index: -1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Mockup sur fond clair */
+        .book-mockup {
+            width: 300px;
+            height: 450px;
+            background: #222; /* Le livre reste sombre pour contraster */
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.25); /* Ombre portée plus marquée */
+            transform: rotateY(-10deg) rotateX(5deg);
+            transition: transform 0.5s;
+        }
+        .hero-image:hover .book-mockup {
+            transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+        }
+
+        /* --- 5. STATS --- */
+        .stats-bar {
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            padding: 30px 0;
+            margin-top: -50px;
+            background: rgba(255,255,255,0.9); /* Blanc semi-transparent */
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 5;
+        }
+        .stats-grid {
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+        .stat-item h4 { font-size: 2.5rem; color: var(--accent); margin-bottom: 5px; }
+        .stat-item p { color: var(--text-main); font-weight: bold; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- 6. FEATURES --- */
+        .features { padding: 120px 0; background-color: var(--bg-main); }
+        .section-title { text-align: center; margin-bottom: 80px; }
+        .section-title h2 { font-size: 3rem; margin-bottom: 15px; }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+            transition: 0.4s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(128, 0, 32, 0.1);
+        }
+
+        .card-icon { font-size: 2rem; margin-bottom: 20px; }
+        .card h3 { color: #000; margin-bottom: 10px; }
+
+        /* --- 7. PRICING --- */
+        .pricing {
+            padding: 100px 0;
+            background-color: var(--bg-secondary); /* Fond gris clair pour séparer */
+            text-align: center;
+        }
+        .price-box {
+            background: #ffffff;
+            border: 2px solid var(--accent);
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+        }
+        .price { font-size: 4rem; font-weight: 900; color: var(--accent); }
+        .price span { font-size: 1.2rem; color: var(--text-muted); font-weight: normal; color: #000; }
+        
+        .price-list {
+            list-style: none;
+            text-align: left;
+            margin: 30px 0;
+            color: #333;
+        }
+        .price-list li { margin-bottom: 15px; display: flex; align-items: center; font-weight: 500; }
+        .price-list li::before { content: '✓'; color: var(--accent); margin-right: 10px; font-weight: bold; }
+
+        /* --- 8. FOOTER --- */
+        footer { padding: 50px 0; text-align: center; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.9rem; background: #fff; }
+
+        /* --- ANIMATIONS --- */
+        .hidden { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .show { opacity: 1; transform: translateY(0); }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-text h1 { font-size: 3rem; }
+            .hero-image { margin-top: 50px; }
+            .stats-grid { flex-direction: column; gap: 30px; }
+            .book-mockup { margin: 0 auto; width: 260px; height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container flex">
+            <div class="logo">RAW<span class="text-accent">BLUEPRINT.</span></div>
+            <a href="#buy" class="btn" style="padding: 12px 25px; font-size: 0.8rem;">Programme</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="hero-text hidden">
+                <h1>L'ARCHITECTURE <br><span class="text-gradient">DU MUSCLE</span></h1>
+                <p>Le plan précis pour construire un physique d'élite. Pas de hasard, juste de la science appliquée et de l'intensité.</p>
+                <a href="#buy" class="btn">Accéder au Blueprint</a>
+                <div style="margin-top: 20px; font-size: 0.8rem; color: #666;">
+                    • Téléchargement Immédiat • Sécurisé
+                </div>
+            </div>
+            <div class="hero-image hidden">
+                <div class="book-mockup">
+                    [IMAGE EBOOK ICI]
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="container stats-grid hidden">
+            <div class="stat-item">
+                <h4>12</h4>
+                <p>Semaines</p>
+            </div>
+            <div class="stat-item">
+                <h4>Hypertrophie</h4>
+                <p>Spécifique</p>
+            </div>
+            <div class="stat-item">
+                <h4>100%</h4>
+                <p>Optimisé</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title hidden">
+                <h2>LE CONTENU DU <span class="text-accent">BLUEPRINT</span></h2>
+                <p style="color: var(--text-muted);">Une méthodologie complète, pas juste une liste d'exos.</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card hidden">
+                    <div class="card-icon">🏗️</div>
+                    <h3>Structure d'Entraînement</h3>
+                    <p style="color: #666; margin-top: 10px;">Volume, intensité et fréquence calibrés pour la croissance naturelle. Chaque série compte.</p>
+                </div>
+                <div class="card hidden">
+                    <div class="card-icon">🥩</div>
+                    <h3>Nutrition de Performance</h3>
+                    <p style="color: #666; margin-top: 10px;">Gérer ses macros sans obsession. Les protocoles pour sécher ou prendre de la masse proprement.</p>
+                </div>
+                <div class="card hidden">
+                    <div class="card-icon">🧠</div>
+                    <h3>Focus & Exécution</h3>
+                    <p style="color: #666; margin-top: 10px;">La connexion esprit-muscle expliquée. Comment recruter les fibres profondes à chaque rep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="buy">
+        <div class="container">
+            <div class="price-box hidden">
+                <h3>ACCÈS COMPLET</h3>
+                <div class="price">29€</div>
+                <ul class="price-list">
+                    <li>Guide The Raw Blueprint (PDF)</li>
+                    <li>Calculateur de Macros (Excel)</li>
+                    <li>Guide Vidéo des Mouvements</li>
+                    <li>Mises à jour à vie</li>
+                </ul>
+                <a href="#" class="btn" style="width: 100%;">Commencer la transformation</a>
+                <p style="margin-top: 20px; font-size: 0.8rem; color: #888;">Paiement sécurisé par Stripe</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 The Raw Blueprint. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animation simple
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+
+</body>
+</html>
