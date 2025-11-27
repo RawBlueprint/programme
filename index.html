@@ -1,16 +1,226 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Title</title>
+    <title>The Raw Blueprint - Programme Sportif</title>
+    <style>
+        /* --- CONFIGURATION GÉNÉRALE & COULEURS --- */
+        :root {
+            --bg-color: #121212;       /* Fond très sombre */
+            --card-bg: #1e1e1e;        /* Fond des cartes */
+            --text-main: #ffffff;      /* Texte blanc */
+            --text-muted: #b0b0b0;     /* Texte gris */
+            --accent: #D4AF37;         /* Or Métallique pour le côté "Pro" */
+            --accent-hover: #b5952f;   /* Or plus foncé au survol */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* --- HEADER / HERO SECTION --- */
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle at center, #2a2a2a 0%, #121212 100%);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            color: var(--accent);
+            text-shadow: 0px 0px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* Espace pour l'image du Ebook */
+        .ebook-image-container {
+            width: 100%;
+            max-width: 350px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid var(--accent);
+        }
+
+        .ebook-image-container img {
+            width: 100%;
+            display: block;
+            /* Placeholder : à remplacer par ton image */
+        }
+
+        /* --- SECTION CARACTÉRISTIQUES (LES CARRÉS) --- */
+        .features-section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .feature-card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        /* --- SECTION PRIX --- */
+        .pricing-section {
+            background-color: var(--card-bg);
+            padding: 80px 20px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .price-tag {
+            font-size: 4rem;
+            font-weight: bold;
+            color: var(--text-main);
+            margin: 20px 0;
+        }
+
+        .currency {
+            font-size: 2rem;
+            color: var(--accent);
+            vertical-align: top;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #000;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.2s;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-hover);
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            border-top: 1px solid #333;
+        }
+
+        /* Responsive : ajustements pour mobile */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .price-tag { font-size: 3rem; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Programme</h1>
-    <p>Some content here...</p>
-    
-    <!-- Removed the button as requested -->
-    
-    <script src="your-script.js"></script>
+
+    <header>
+        <h1>The Raw Blueprint</h1>
+        <p class="subtitle">La fusion ultime entre la science de l'entraînement moderne et le pragmatisme du terrain.</p>
+        
+        <div class="ebook-image-container">
+            <img src="https://placehold.co/350x500/121212/D4AF37?text=Couverture+Ebook" alt="Couverture The Raw Blueprint">
+        </div>
+
+        <a href="#buy" class="cta-button">Obtenir le Blueprint</a>
+    </header>
+
+    <section class="features-section">
+        <div style="text-align: center;">
+            <h2 class="section-title">Pourquoi ce programme ?</h2>
+        </div>
+        
+        <div class="grid-container">
+            <div class="feature-card">
+                <h3>🔬 Basé sur la Science</h3>
+                <p>Oubliez la bro-science. Chaque exercice, chaque série et chaque temps de repos est calibré selon les dernières méta-analyses en hypertrophie et force.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🔨 Pragmatisme Absolu</h3>
+                <p>Pas de théorie inutile. Un plan d'action brut, direct et applicable immédiatement dans votre salle de sport, peu importe votre équipement.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>📈 Progression Garantie</h3>
+                <p>Une structure de surcharge progressive intégrée pour s'assurer que vous ne stagnez jamais. Le résultat n'est pas une option, c'est une conséquence.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="buy" class="pricing-section">
+        <h2>Investissez dans votre physique</h2>
+        <p style="color: #b0b0b0; margin-top: 10px;">Accès immédiat au format PDF</p>
+        
+        <div class="price-tag">
+            20<span class="currency">€</span>
+        </div>
+
+        <a href="#" class="cta-button">Acheter Maintenant</a>
+        
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #666;">Paiement 100% sécurisé</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 The Raw Blueprint. Tous droits réservés.</p>
+    </footer>
+
 </body>
 </html>
