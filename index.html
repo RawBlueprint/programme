@@ -67,8 +67,18 @@
         nav .flex { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 900; letter-spacing: 2px; }
 
-        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 50px; }
-        .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; /* Center content */
+            padding-top: 50px; 
+            flex-direction: column; /* Makes text stack vertically */
+            text-align: center; /* Ensures text is centered */
+        }
+        .hero-content {
+            gap: 50px; 
+        }
         .hero-text h1 { font-size: 4rem; line-height: 1; margin-bottom: 20px; }
         
         /* Image avec lueur rouge */
@@ -118,7 +128,6 @@
     <nav>
         <div class="container flex">
             <div class="logo">RAW<span class="text-accent">BLUEPRINT.</span></div>
-            <a href="#buy" class="btn" style="padding: 10px 20px; font-size: 0.8rem;">Programme</a>
         </div>
     </nav>
 
